@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import GetLocation from 'react-native-get-location';
@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginLeft: 10
     },
     map: {
         ...StyleSheet.absoluteFillObject,
@@ -24,9 +23,15 @@ export default function GoogleMapScreen(props) {
         longitude: -122.4324
     })
 
+    const ggMap = useRef(null);
+
     useEffect(() => {
         _zgetCurrentLocation();
     }, []);
+
+    useEffect(() => {
+
+    }, [currentLocation]);
 
     const _zgetCurrentLocation = async () => {
         await GetLocation.getCurrentPosition({
@@ -54,9 +59,10 @@ export default function GoogleMapScreen(props) {
             <MapView
                 provider={PROVIDER_GOOGLE}
                 style={styles.map}
+                ref={ggMap}
                 region={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
+                    latitude: currentLocation.latitude,
+                    longitude: currentLocation.longitude,
                     latitudeDelta: 0.015,
                     longitudeDelta: 0.0121,
                 }}
