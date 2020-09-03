@@ -16,15 +16,16 @@
     "react": "16.13.1",
     "react-native": "0.63.2",
     "react-native-autocomplete-input": "^4.2.0",
+    "react-native-fs": "^2.16.6",
     "react-native-gesture-handler": "^1.7.0",
     "react-native-get-location": "^1.4.3",
     "react-native-maps": "^0.27.1",
-    "react-native-navigation": "^6.12.2",
     "react-native-permissions": "^2.2.0",
     "react-native-reanimated": "^1.13.0",
     "react-native-safe-area-context": "^3.1.7",
     "react-native-screens": "^2.10.1",
-    "react-native-sqlite-storage": "^5.0.0"
+    "react-native-sqlite-storage": "^5.0.0",
+    "react-native-tiny-toast": "^1.0.7"
   },
   "devDependencies": {
     "@babel/core": "7.11.5",

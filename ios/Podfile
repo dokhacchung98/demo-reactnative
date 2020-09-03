@@ -28,6 +28,8 @@ target 'trainningreact' do
 
 
 
+  pod 'RNFS', :path => '../node_modules/react-native-fs'
+
   target 'trainningreactTests' do
     inherit! :complete
     # Pods for testing

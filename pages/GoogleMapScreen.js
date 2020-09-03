@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import GetLocation from 'react-native-get-location';
+import Toast from 'react-native-tiny-toast'
 
 const styles = StyleSheet.create({
     container: {
@@ -10,7 +11,7 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'flex-end',
         alignItems: 'center',
-        marginLeft: 40
+        marginLeft: 10
     },
     map: {
         ...StyleSheet.absoluteFillObject,
@@ -34,8 +35,13 @@ export default function GoogleMapScreen(props) {
         })
             .then(location => {
                 console.log(location);
-            },e => {
+                setCurrentLocation({
+                    latitude: location.latitude,
+                    longitude: location.longitude
+                })
+            }, e => {
                 console.log('get current location err: ', e)
+                Toast.show('Lỗi lấy địa chỉ hiện tại', e.message)
             })
             .catch(error => {
                 const { code, message } = error;
@@ -56,10 +62,7 @@ export default function GoogleMapScreen(props) {
                 }}
             >
                 <Marker
-                    coordinate={{
-                        latitude: 37.78825,
-                        longitude: -122.4324
-                    }}
+                    coordinate={currentLocation}
                     title={'Demo marker'}
                     description={'this is demo marker'}
                 />
