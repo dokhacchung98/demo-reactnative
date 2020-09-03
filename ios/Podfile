@@ -6,15 +6,27 @@ platform :ios, '10.0'
 target 'trainningreact' do
   
   rn_maps_path = '../node_modules/react-native-maps'
+  
   pod 'react-native-google-maps', :path => rn_maps_path
   pod 'GoogleMaps'
   pod 'Google-Maps-iOS-Utils'
+  
+  # start permission
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+  pod 'Permission-LocationAlways', :path => "#{permissions_path}/LocationAlways.podspec"
+  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse.podspec"
+  # end permission
+  
+  pod 'react-native-sqlite-storage', :path => '../node_modules/react-native-sqlite-storage'
   
   config = use_native_modules!
 
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
+
 
   target 'trainningreactTests' do
     inherit! :complete
@@ -28,6 +40,11 @@ target 'trainningreact' do
   use_flipper!
   post_install do |installer|
     flipper_post_install(installer)
+    if target.name == 'react-native-google-maps'
+      target.build_configurations.each do |config|
+        config.build_settings['CLANG_ENABLE_MODULES'] = 'No'
+      end
+    end
   end
 end
 

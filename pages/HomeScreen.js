@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
 
 export default function HomeScreen(props) {
 
@@ -15,6 +15,10 @@ export default function HomeScreen(props) {
         props.navigation.navigate('GoogleMapScreen');
     }
 
+    const _gotoSqlite = () => {
+        props.navigation.navigate('SqliteScreen');
+    }
+
     return (
         <View style={{ marginTop: 100, marginHorizontal: 20 }}>
             <TouchableOpacity activeOpacity={0.8} onPress={_gotoStorageScreen}
@@ -28,6 +32,10 @@ export default function HomeScreen(props) {
             <TouchableOpacity activeOpacity={0.8} onPress={_gotoMapScreen}
                 style={{ marginTop: 14 }}>
                 <Text style={styles.styleTouch}>Google map</Text>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.8} onPress={_gotoSqlite}
+                style={{ marginTop: 14 }}>
+                <Text style={styles.styleTouch}>Sqlite</Text>
             </TouchableOpacity>
         </View>
     )

@@ -14,6 +14,7 @@ import AutoInputScreen from './pages/AutoInputScreen';
 import InternalFileScreen from './pages/InternalFileScreen';
 import HomeScreen from './pages/HomeScreen';
 import GoogleMapScreen from './pages/GoogleMapScreen';
+import SqliteScreen from './pages/SqliteScreen';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,7 @@ const App: () => React$Node = () => {
         <Stack.Screen name="InternalFileScreen" component={InternalFileScreen} />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="GoogleMapScreen" component={GoogleMapScreen} />
+        <Stack.Screen name="SqliteScreen" component={SqliteScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
