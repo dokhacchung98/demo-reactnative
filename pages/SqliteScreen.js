@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, FlatList, Text, ScrollView, TextInput } from 'react-native';
+import { View, FlatList, Text, ScrollView, TextInput, NativeModules } from 'react-native';
 import { openDatabase } from 'react-native-sqlite-storage';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import Toast from 'react-native-tiny-toast'
 
 export default function SqliteScreen(props) {
+    var Toast = NativeModules.ToastModule;
+
     var db = openDatabase({ name: 'demosql.db', createFromLocation: 1, location: 'default' },
         () => {
             console.log('open db success');
@@ -32,7 +33,7 @@ export default function SqliteScreen(props) {
                 }
                 setListUser(tmp);
             }, err => {
-                Toast.show(err.message);
+                Toast.showMessage(err.message);
                 console.log('open sql error: ', err)
             });
         });
@@ -52,7 +53,7 @@ export default function SqliteScreen(props) {
                 console.log("Query completed");
                 _getAllUser();
             }, err => {
-                Toast.show(err.message);
+                Toast.showMessage(err.message);
                 console.log('open sql error: ', err)
             });
         });
@@ -68,7 +69,7 @@ export default function SqliteScreen(props) {
                 console.log("Query completed");
                 console.log(results.rows)
             }, err => {
-                Toast.show(err.message);
+                Toast.showMessage(err.message);
                 console.log('open sql error: ', err)
             });
         });

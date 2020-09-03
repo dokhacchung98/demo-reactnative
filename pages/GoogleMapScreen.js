@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, NativeModules } from 'react-native';
 import MapView, { PROVIDER_GOOGLE, Marker } from 'react-native-maps'; // remove PROVIDER_GOOGLE import if not using Google Maps
 import GetLocation from 'react-native-get-location';
-import Toast from 'react-native-tiny-toast'
 
 const styles = StyleSheet.create({
     container: {
@@ -18,6 +17,7 @@ const styles = StyleSheet.create({
 });
 
 export default function GoogleMapScreen(props) {
+    var Toast = NativeModules.ToastModule;
     const [currentLocation, setCurrentLocation] = useState({
         latitude: 37.78825,
         longitude: -122.4324
@@ -46,7 +46,7 @@ export default function GoogleMapScreen(props) {
                 })
             }, e => {
                 console.log('get current location err: ', e)
-                Toast.show('Lỗi lấy địa chỉ hiện tại', e.message)
+                Toast.showMessage('Lỗi lấy địa chỉ hiện tại', e.message)
             })
             .catch(error => {
                 const { code, message } = error;

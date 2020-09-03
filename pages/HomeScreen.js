@@ -20,6 +20,10 @@ export default function HomeScreen(props) {
         props.navigation.navigate('SqliteScreen');
     }
 
+    const _gotoChat = () => {
+        props.navigation.navigate('ChatScreen');
+    }
+
     const listPermission = [
         PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
         PERMISSIONS.ANDROID.WRITE_EXTERNAL_STORAGE,
@@ -71,6 +75,10 @@ export default function HomeScreen(props) {
             <TouchableOpacity activeOpacity={0.8} onPress={_gotoSqlite}
                 style={{ marginTop: 14 }}>
                 <Text style={styles.styleTouch}>Sqlite</Text>
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.8} onPress={_gotoChat}
+                style={{ marginTop: 14 }}>
+                <Text style={styles.styleTouch}>Chat</Text>
             </TouchableOpacity>
         </View>
     )

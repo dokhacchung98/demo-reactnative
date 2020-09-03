@@ -15,6 +15,7 @@ import InternalFileScreen from './pages/InternalFileScreen';
 import HomeScreen from './pages/HomeScreen';
 import GoogleMapScreen from './pages/GoogleMapScreen';
 import SqliteScreen from './pages/SqliteScreen';
+import ChatScreen from './pages/ChatScreen';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,7 @@ const App: () => React$Node = () => {
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="GoogleMapScreen" component={GoogleMapScreen} />
         <Stack.Screen name="SqliteScreen" component={SqliteScreen} />
+        <Stack.Screen name="ChatScreen" component={ChatScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

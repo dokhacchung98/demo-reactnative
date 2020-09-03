@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, NativeModules } from 'react-native';
 import * as RNFS from 'react-native-fs';
-import Toast from 'react-native-tiny-toast';
 
 export default function InternalFileScreen(props) {
+    var Toast = NativeModules.ToastModule;
     var pathFile = RNFS.DocumentDirectoryPath + '/test.txt';
 
     console.log('pathFile', pathFile)
@@ -22,12 +22,12 @@ export default function InternalFileScreen(props) {
     const _writeFile = () => {
         console.log('value: ', content)
         RNFS.writeFile(pathFile, content.toString(), 'utf8').then(res => {
-            Toast.show('Lưu file thành công');
+            Toast.showMessage('Lưu file thành công');
             _readFile();
         }, err => {
             console.log(err.message, err.code);
         }).catch(err => {
-            Toast.show(err.message);
+            Toast.showMessage(err.message);
             console.log(err.message, err.code);
         });
     }
@@ -44,7 +44,7 @@ export default function InternalFileScreen(props) {
                 return 'no file';
             })
             .catch((err) => {
-                Toast.show(err.message);
+                Toast.showMessage(err.message);
                 console.log(err.message, err.code);
             });
     }
